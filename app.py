@@ -14,7 +14,7 @@ st.divider()
 col_img1, col_img2 = st.columns(2)
 
 # نام فایل‌ها را اینجا چک کنید (باید دقیقاً با فایل‌های گیت‌هاب یکی باشد)
-img1_path = "plan_2505.png"
+img1_path = "plan_2505.png.jpg"
 img2_path = "plan_2506.png"
 
 with col_img1:
@@ -35,9 +35,9 @@ target_date = st.sidebar.date_input("Target Closing Date", date.today())
 deal_tier = st.sidebar.radio("Select Strategy Tier", ["Break-Even Exit", "Strategic All-Inclusive"])
 
 # داده‌های استخراج شده از مستندات SOA
-[span_0](start_span)[span_1](start_span)overdue_now = 216000 # مجموع بدهی معوقه هر دو واحد[span_0](end_span)[span_1](end_span)
-[span_2](start_span)[span_3](start_span)next_installment = 64800 # مجموع اقساط سررسید 5 می[span_2](end_span)[span_3](end_span)
-[span_4](start_span)[span_5](start_span)pivot_date = date(2026, 5, 5) # تاریخ کلیدی تغییر نقدینگی[span_4](end_span)[span_5](end_span)
+overdue_now = 216000 # مجموع بدهی معوقه هر دو واحد[span_0](end_span)[span_1](end_span)
+next_installment = 64800 # مجموع اقساط سررسید 5 می[span_2](end_span)[span_3](end_span)
+pivot_date = date(2026, 5, 5) # تاریخ کلیدی تغییر نقدینگی[span_4](end_span)[span_5](end_span)
 noc_comm_fees = 28760 # هزینه NOC + 2% کمیسیون
 
 # منطق محاسبات زمانی
