@@ -22,9 +22,9 @@ target_date = st.sidebar.date_input("Target Closing Date", date.today())
 deal_tier = st.sidebar.radio("Select Strategy", ["Break-Even Exit", "Strategic All-Inclusive"])
 
 # داده‌های استخراج شده از SOA
-[span_0](start_span)[span_1](start_span)overdue_now = 216000 # مجموع بدهی معوقه هر دو واحد[span_0](end_span)[span_1](end_span)
-[span_2](start_span)[span_3](start_span)next_installment = 64800 # مجموع قسط 5 می برای هر دو واحد[span_2](end_span)[span_3](end_span)
-[span_4](start_span)[span_5](start_span)pivot_date = date(2026, 5, 5) # موعد قسط بعدی[span_4](end_span)[span_5](end_span)
+overdue_now = 216000 # مجموع بدهی معوقه هر دو واحد[span_0](end_span)[span_1](end_span)
+next_installment = 64800 # مجموع قسط 5 می برای هر دو واحد[span_2](end_span)[span_3](end_span)
+pivot_date = date(2026, 5, 5) # موعد قسط بعدی[span_4](end_span)[span_5](end_span)
 noc_comm_fees = 28760 # هزینه NOC و 2% کمیسیون
 
 # منطق محاسباتی زمان
