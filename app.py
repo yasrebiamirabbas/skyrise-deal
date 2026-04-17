@@ -68,7 +68,7 @@ with c2:
 
 with c3:
     st.metric("Final Handover (Dec 1, 2026)", "648,000 AED")
-    [span_8](start_span)[span_9](start_span)st.write("30% Final Payment to Developer[span_8](end_span)[span_9](end_span)")
+    st.write("30% Final Payment to Developer[span_8](end_span)[span_9](end_span)")
 
 # نمایش قیمت تمام شده خریدار
 st.success(f"**Total Acquisition Price for the Buyer: {total_deal_value:,.0f} AED**")
