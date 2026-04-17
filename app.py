@@ -1,77 +1,92 @@
 import streamlit as st
+import plotly.graph_objects as go
 from datetime import date
-import os
 
-# تنظیمات اصلی صفحه
-st.set_page_config(page_title="AMIR - Skyrise Deal", layout="wide")
+# تنظیمات تم لوکس
+st.set_page_config(page_title="ALMOHALENIN | Binghatti Executive", layout="wide")
 
-# بخش هدر و برندینگ
-st.markdown("<h1 style='text-align: center; color: #D4AF37;'>Deal Strategic Investment Calculator</h1>", unsafe_allow_html=True)
-st.markdown("<h3 style='text-align: center;'>Binghatti Skyrise - Tower C (C2505 & C2506)</h3>", unsafe_allow_html=True)
+st.markdown("""
+    <style>
+    .main { background-color: #0e1117; }
+    .stMetric { background-color: #1e2130; padding: 15px; border-radius: 10px; border: 1px solid #d4af37; }
+    </style>
+    """, unsafe_allow_html=True)
 
-# نمایش تصاویر پلان‌ها با چک کردن وجود فایل
+# هدر برندینگ
+st.title("🏆 ALMOHALENIN | Creative Exit Strategy")
+st.subheader("Binghatti Skyrise Tower C - Investment Portal")
+
+# بخش تصاویر و پلان‌ها
 st.divider()
-col_img1, col_img2 = st.columns(2)
+col_a, col_b = st.columns(2)
+with col_a:
+    st.image("plan_2505.png", caption="Studio C2505 (Floor 25)", use_container_width=True)
+with col_b:
+    st.image("plan_2506.png", caption="Studio C2506 (Floor 25)", use_container_width=True)
 
-# نام فایل‌ها را اینجا چک کنید (باید دقیقاً با فایل‌های گیت‌هاب یکی باشد)
-img1_path = "plan_2505.png.jpg"
-img2_path = "plan_2506.png"
+# سایدبار کنترل
+st.sidebar.header("🕹️ Deal Controller")
+target_date = st.sidebar.date_input("Closing Date", date.today())
+equity_recovery = st.sidebar.slider("Seller Equity Recovery (Your Profit/Return)", 0, 550000, 0, 5000)
 
-with col_img1:
-    if os.path.exists(img1_path):
-        st.image(img1_path, caption="Unit C2505 Floor Plan", use_container_width=True)
-    else:
-        st.warning(f"Image {img1_path} not found in repository.")
+# محاسبات پایه از SOA
+overdue_now = 216000 
+#[span_1](end_span)[span_2](end_span)
+next_inst = 64800
+#[span_3](end_span)[span_4](end_span)
+pivot_date = date(2026, 5, 5)
+#[span_5](end_span)[span_6](end_span)
+fees = 28760 
+# NOC + 2% Commission
+remaining_balance = 972000 # کل مانده اقساط باقی‌مانده بعد از تسویه معوقات
 
-with col_img2:
-    if os.path.exists(img2_path):
-        st.image(img2_path, caption="Unit C2506 Floor Plan", use_container_width=True)
-    else:
-        st.warning(f"Image {img2_path} not found in repository.")
-
-# ورودی‌های کاربر در سایدبار
-st.sidebar.header("Deal Parameters")
-target_date = st.sidebar.date_input("Target Closing Date", date.today())
-deal_tier = st.sidebar.radio("Select Strategy Tier", ["Break-Even Exit", "Strategic All-Inclusive"])
-
-# داده‌های استخراج شده از مستندات SOA
-overdue_now = 216000 # مجموع بدهی معوقه هر دو واحد[span_0](end_span)[span_1](end_span)
-next_installment = 64800 # مجموع اقساط سررسید 5 می[span_2](end_span)[span_3](end_span)
-pivot_date = date(2026, 5, 5) # تاریخ کلیدی تغییر نقدینگی[span_4](end_span)[span_5](end_span)
-noc_comm_fees = 28760 # هزینه NOC + 2% کمیسیون
-
-# منطق محاسبات زمانی
+# منطق زمانی
 is_after_may = target_date >= pivot_date
-calculated_overdue = overdue_now + (next_installment if is_after_may else 0)
+initial_overdue = overdue_now + (next_inst if is_after_may else 0)
 
-# تعیین قیمت نهایی بر اساس استراتژی منتخب
-if deal_tier == "Break-Even Exit":
-    total_deal_value = 1156500
-else:
-    total_deal_value = 1216760
+# مبالغ نهایی
+down_payment = initial_overdue + fees + equity_recovery
+total_acquisition = 1188000 + fees + equity_recovery
+#[span_7](end_span)[span_8](end_span)
+market_avg = 1243000 
+#[span_9](end_span)
 
-# نمایش نتایج نهایی
+# نمایش شاخص‌های اصلی
 st.divider()
-st.header(f"📊 Summary of {deal_tier} Offer")
-
 c1, c2, c3 = st.columns(3)
 with c1:
-    initial_cash = calculated_overdue + noc_comm_fees
-    st.metric("Initial Cash Required", f"{initial_cash:,.0f} AED")
-    st.caption("Includes: Current Overdue + NOC + Commission")
-
+    st.metric("INITIAL CASH REQUIRED", f"{down_payment:,.0f} AED", help="Overdue + Fees + Selected Equity")
 with c2:
-    # [span_6](start_span)[span_7](start_span)مجموع اقساط ماهانه باقی‌مانده[span_6](end_span)[span_7](end_span)
-    remaining_monthly = 324000 if not is_after_may else 259200
-    st.metric("Future Monthly Payments", f"{remaining_monthly:,.0f} AED")
-    st.write("64,800 AED / month (Total for both units)")
-
+    st.metric("TOTAL ACQUISITION COST", f"{total_acquisition:,.0f} AED")
 with c3:
-    st.metric("Final Handover (Dec 1, 2026)", "648,000 AED")
-    st.write("30% Final Payment to Developer[span_8](end_span)[span_9](end_span)")
+    savings = market_avg - total_acquisition
+    st.metric("SAVINGS VS MARKET", f"{savings:,.0f} AED", delta=f"{(savings/market_avg)*100:.1f}%")
 
-# نمایش قیمت تمام شده خریدار
-st.success(f"**Total Acquisition Price for the Buyer: {total_deal_value:,.0f} AED**")
+# نمودار تحلیل پرداخت‌ها
+st.write("### 📊 Payment Structure Breakdown")
+fig = go.Figure(data=[
+    go.Bar(name='Initial Cash', x=['Investment Structure'], y=[down_payment], marker_color='#d4af37'),
+    go.Bar(name='Monthly Installments', x=['Investment Structure'], y=[324000 if not is_after_may else 259200], marker_color='#1e2130'),
+    go.Bar(name='Handover (Dec 2026)', x=['Investment Structure'], y=[648000], marker_color='#3e4561')
+])
+fig.update_layout(barmode='stack', height=400, template="plotly_dark")
+st.plotly_chart(fig, use_container_width=True)
 
-# بند حقوقی تفاهم‌نامه (MOU)
-st.warning("⚠️ MOU Term: In case of failure to settle any monthly installments, all previous payments will be forfeited in favor of the seller, and the transaction will be deemed null and void.")
+# تحلیل استراتژیک
+st.divider()
+st.write("### 💡 Strategy Analysis")
+col1, col2 = st.columns(2)
+
+with col1:
+    if equity_recovery == 0:
+        st.success("STRICT DISTRESSED: This is a fast-exit scenario with the lowest possible entry barrier for the buyer.")
+    elif equity_recovery < 250000:
+        st.info("BALANCED GROWTH: A mid-tier offer providing equity return while keeping the price well below market average.")
+    else:
+        st.warning("PREMIUM STRUCTURE: A high-leverage acquisition for buyers seeking long-term interest-free plans.")
+
+with col2:
+    st.write(f"**Investor Memo:** By acquiring this unit for {total_acquisition:,.0f} AED, the buyer secures a prime asset in Business Bay with an interest-free credit bridge until December 2026. This structure provides a 5x leverage compared to standard bank-financed purchases.")
+
+# کپی‌رایت
+st.markdown("<p style='text-align: center; opacity: 0.5;'>Managed by ALMOHALENIN | Dr. Amir Yasrebi</p>", unsafe_allow_html=True)
