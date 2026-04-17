@@ -16,13 +16,25 @@ st.markdown("""
 st.title("🏆 ALMOHALENIN | Creative Exit Strategy")
 st.subheader("Binghatti Skyrise Tower C - Investment Portal")
 
-# بخش تصاویر و پلان‌ها
+# نمایش تصاویر پلان‌ها با چک کردن وجود فایل
 st.divider()
-col_a, col_b = st.columns(2)
-with col_a:
-    st.image("plan_2505.png", caption="Studio C2505 (Floor 25)", use_container_width=True)
-with col_b:
-    st.image("plan_2506.png", caption="Studio C2506 (Floor 25)", use_container_width=True)
+col_img1, col_img2 = st.columns(2)
+
+# نام فایل‌ها را اینجا چک کنید (باید دقیقاً با فایل‌های گیت‌هاب یکی باشد)
+img1_path = "plan_2505.png.jpg"
+img2_path = "plan_2506.png.jpg"
+
+with col_img1:
+    if os.path.exists(img1_path):
+        st.image(img1_path, caption="Unit C2505 Floor Plan", use_container_width=True)
+    else:
+        st.warning(f"Image {img1_path} not found in repository.")
+
+with col_img2:
+    if os.path.exists(img2_path):
+        st.image(img2_path, caption="Unit C2506 Floor Plan", use_container_width=True)
+    else:
+        st.warning(f"Image {img2_path} not found in repository.")
 
 # سایدبار کنترل
 st.sidebar.header("🕹️ Deal Controller")
