@@ -128,7 +128,7 @@ with c1:
     st.markdown(f"""
     <div style='background-color: #11141d; padding: 20px; border-radius: 10px; border: 2px solid #D4AF37;'>
     <h4 style='color: #D4AF37; margin-top:0;'>Standard Resale</h4>
-    <p>❌ Upfront Cash: <b>~670,000 AED</b></p>
+    <p style='color: #e0e0e0>❌ Upfront Cash: <b>~670,000 AED</b></p>
     <p>❌ Full Equity Payment Required</p>
     <p>❌ High Entry Barrier</p>
     </div>
