@@ -151,7 +151,7 @@ labels = ["Entry Signature"] + [d.strftime("%b %y") for d in future_dates] + ["H
 values = [upfront_cash] + [current_monthly] * len(future_dates) + [current_handover]
 
 # Color Coding: Gold for Entry, Blue for Monthly, Red for Handover
-bar_colors = ['#D4AF37'] + ['#2E86C1'] * len(future_dates) + ['#E74C3C']
+bar_colors = ['#D4AF37'] + ['#81756E'] * len(future_dates) + ['#5D4E49']
 
 fig = go.Figure(data=[
     go.Bar(x=labels, y=values, 
