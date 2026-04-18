@@ -128,18 +128,18 @@ with c1:
     st.markdown(f"""
     <div style='background-color: #11141d; padding: 20px; border-radius: 10px; border: 2px solid #D4AF37;'>
     <h4 style='color: #D4AF37; margin-top:0;'>Standard Resale</h4>
-    <p>❌ Upfront Cash: <b>~670,000 AED</b></p>
-    <p>❌ Full Equity Payment Required</p>
-    <p>❌ High Entry Barrier</p>
+    <p style='color: #FFFFFF;'>❌ Upfront Cash: <b>~670,000 AED</b></p>
+    <p style='color: #FFFFFF;'>❌ Full Equity Payment Required</p>
+    <p style='color: #FFFFFF;'>❌ High Entry Barrier</p>
     </div>
     """, unsafe_allow_html=True)
 with c2:
     st.markdown(f"""
     <div style='background-color: #11141d; padding: 20px; border-radius: 10px; border: 2px solid #D4AF37;'>
     <h4 style='color: #D4AF37; margin-top:0;'>Creative Strategy</h4>
-    <p>✅ Upfront Cash: <b>{upfront_cash:,.0f} AED</b></p>
-    <p>✅ Liability Assumption Model</p>
-    <p>✅ 0% Private Installment Plan</p>
+    <p style='color: #FFFFFF;'>✅ Upfront Cash: <b>{upfront_cash:,.0f} AED</b></p>
+    <p style='color: #FFFFFF;'>✅ Liability Assumption Model</p>
+    <p style='color: #FFFFFF;'>✅ 0% Private Installment Plan</p>
     </div>
     """, unsafe_allow_html=True)
 
