@@ -16,7 +16,7 @@ def get_base64(bin_file):
 
 # بارگذاری عکس sky.jpg با اورلی روشن
 try:
-    bin_str = get_base64('sky.jpg')
+    bin_str = get_base64('sky.png')
     # اورلی سفید نیمه‌شفاف برای روشن کردن فضا
     bg_style = f'''
     <style>
