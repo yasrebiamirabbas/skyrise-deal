@@ -5,7 +5,7 @@ import pandas as pd
 import os
 
 # 1. Page Configuration (Must be first)
-st.set_page_config(page_title="ALMOHALENIN | Strategic Proposal", layout="wide")
+st.set_page_config(page_title="Skyrise Deal | Strategic Proposal", layout="wide")
 
 # 2. Complete White-Labeling & Mobile Readability CSS
 st.markdown("""
@@ -128,7 +128,7 @@ with c1:
     st.markdown(f"""
     <div style='background-color: #11141d; padding: 20px; border-radius: 10px; border: 2px solid #D4AF37;'>
     <h4 style='color: #D4AF37; margin-top:0;'>Standard Resale</h4>
-    <p style='color: #e0e0e0>❌ Upfront Cash: <b>~670,000 AED</b></p>
+    <p>❌ Upfront Cash: <b>~670,000 AED</b></p>
     <p>❌ Full Equity Payment Required</p>
     <p>❌ High Entry Barrier</p>
     </div>
@@ -136,7 +136,7 @@ with c1:
 with c2:
     st.markdown(f"""
     <div style='background-color: #11141d; padding: 20px; border-radius: 10px; border: 2px solid #D4AF37;'>
-    <h4 style='color: #D4AF37; margin-top:0;'>ALMOHALENIN Strategy</h4>
+    <h4 style='color: #D4AF37; margin-top:0;'>Creative Strategy</h4>
     <p>✅ Upfront Cash: <b>{upfront_cash:,.0f} AED</b></p>
     <p>✅ Liability Assumption Model</p>
     <p>✅ 0% Private Installment Plan</p>
