@@ -216,4 +216,4 @@ with col_r:
 
 # --- Footer ---
 st.error("⚠️ PERFORMANCE-BASED MOU: FAILURE TO SETTLE ANY MONTHLY INSTALLMENTS LEADS TO IMMEDIATE FORFEITURE OF ALL PREVIOUSLY PAID FUNDS.")
-st.markdown("<p style='text-align: center; opacity: 0.8; font-weight: 800; color: #2D2D2D !important;'>DR. AMIR YASREBI | CEO ALMOHALENIN</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; opacity: 0.8; font-weight: 800; color: #2D2D2D !important;'>DR. AMIR </p>", unsafe_allow_html=True)
