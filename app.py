@@ -87,8 +87,8 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # --- Header Section ---
-st.markdown("<h1 style='text-align: center; color: #D4AF37 !important; margin-bottom:0; font-weight:800;'>ASSET ACQUISITION STRATEGY</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #666 !important; font-size: 1.1rem;'>Binghatti Skyrise Tower C | Strategic High-Tech Dashboard</p>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: #D4AF37 !important; margin-bottom:0; font-weight:800;'>STRATEGIC CAPITAL LEVERAGE MODEL</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #666 !important; font-size: 1.1rem;'>Binghatti Skyrise Tower C2506 | Strategic High-Tech Dashboard</p>", unsafe_allow_html=True)
 
 # --- Investment Logic Section ---
 with st.container():
