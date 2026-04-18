@@ -94,11 +94,12 @@ st.markdown("<p style='text-align: center; color: #666 !important; font-size: 1.
 with st.container():
     st.markdown("""
     <div class='logic-box'>
-        <h3 style='color: #D4AF37 !important; margin-top:0;'>The Strategy: "Liability Assumption"</h3>
-        <p style='color: #444 !important; font-size: 1.1rem;'>
-        This model allows an investor to secure full ownership by assuming the remaining liabilities. 
-        Instead of paying full equity upfront, you enter with <b>minimal liquidity</b> while benefiting from a 
-        <b>0% interest-free private installment plan</b> until December 2026.
+        <h3 style='color: #D4AF37 !important; margin-top:0;'>The Strategy: "Total Equity & Credit Assumption"</h3>
+        <p style='color: #FFFFFF !important; font-size: 1.15rem; line-height: 1.6;'>
+        This structure allows you to <b>step into the seller’s pre-funded strategic position</b>. By acquiring the existing equity and assuming the remaining balance, you bypass bank mortgages entirely. 
+        <b>You are acquiring a prime asset by leveraging a combination of the developer’s (Binghatti) interest-free capital and the seller’s already-invested funds.</b> 
+        Essentially, you own the property using the builder's money while preserving your own liquidity through a 
+        <b>0% interest-free private bridge</b> until December 2026.
         </p>
     </div>
     """, unsafe_allow_html=True)
