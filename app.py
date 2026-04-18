@@ -120,29 +120,30 @@ m2.metric("MONTHLY PAYMENT", f"{current_monthly:,.0f} AED")
 m3.metric("FINAL HANDOVER", f"{current_handover:,.0f} AED")
 m4.metric("ALL-IN PRICE", f"{current_total:,.0f} AED")
 
-# --- Direct Market Comparison ---
+# --- Unified Market Comparison Section ---
 st.divider()
 st.write("### ⚖️ Market Comparison: Why this deal?")
 c1, c2 = st.columns(2)
+
 with c1:
     st.markdown(f"""
-    <div style='background-color: #1a1a1a; padding: 20px; border-radius: 10px; border: 1px solid #333;'>
-    <h4 style='color: #D4AF37; margin-top:0;'>Standard Resale</h4>
-    <p>❌ Upfront Cash: <b>~670,000 AED</b></p>
-    <p>❌ Full Equity Payment Required</p>
-    <p>❌ High Entry Barrier</p>
-    </div>
-    """, unsafe_allow_html=True)
-with c2:
-    st.markdown(f"""
-    <div style='background-color: #11141d; padding: 20px; border-radius: 10px; border: 2px solid #D4AF37;'>
-    <h4 style='color: #D4AF37; margin-top:0;'>ALMOHALENIN Strategy</h4>
-    <p>✅ Upfront Cash: <b>{upfront_cash:,.0f} AED</b></p>
-    <p>✅ Liability Assumption Model</p>
-    <p>✅ 0% Private Installment Plan</p>
+    <div class='logic-box' style='border-left: 5px solid #888; background-color: #4A4A4A;'>
+        <h4 style='margin-top:0;'>Standard Resale</h4>
+        <p>❌ Upfront Cash: <b>~670,000 AED</b></p>
+        <p>❌ Full Equity Payment Required</p>
+        <p>❌ High Entry Barrier</p>
     </div>
     """, unsafe_allow_html=True)
 
+with c2:
+    st.markdown(f"""
+    <div class='logic-box'>
+        <h4 style='margin-top:0;'>ALMOHALENIN Strategy</h4>
+        <p>✅ Upfront Cash: <b>{upfront_cash:,.0f} AED</b></p>
+        <p>✅ Liability Assumption Model</p>
+        <p>✅ 0% Private Installment Plan</p>
+    </div>
+    """, unsafe_allow_html=True)
 # --- Multi-Color Timeline Chart ---
 st.divider()
 st.write("### 📅 Personalized Payment Timeline")
