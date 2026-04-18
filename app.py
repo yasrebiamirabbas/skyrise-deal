@@ -126,7 +126,7 @@ st.write("### ⚖️ Market Comparison: Why this deal?")
 c1, c2 = st.columns(2)
 with c1:
     st.markdown(f"""
-    <div style='background-color: #1a1a1a; padding: 20px; border-radius: 10px; border: 1px solid #333;'>
+    <div style='background-color: #A49A87; padding: 20px; border-radius: 10px; border: 1px solid #333;'>
     <h4 style='color: #A49A87; margin-top:0;'>Standard Resale</h4>
     <p>❌ Upfront Cash: <b>~670,000 AED</b></p>
     <p>❌ Full Equity Payment Required</p>
