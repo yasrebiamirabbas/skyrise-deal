@@ -8,20 +8,20 @@ import os
 # ۱. تنظیمات اولیه
 st.set_page_config(page_title="Skyrise Deal | Strategic Proposal", layout="wide")
 
-# تابع تبدیل عکس به Base64 برای استفاده در پس‌زمینه
+# تابع تبدیل عکس به Base64
 def get_base64(bin_file):
     with open(bin_file, 'rb') as f:
         data = f.read()
     return base64.b64encode(data).decode()
 
-# بارگذاری عکس sky.jpg
+# بارگذاری عکس sky.jpg با اورلی روشن
 try:
-    bin_str = get_base64('sky.png')
-    # استایل پس‌زمینه ثابت با اورلی گرادینت مدرن
+    bin_str = get_base64('sky.jpg')
+    # اورلی سفید نیمه‌شفاف برای روشن کردن فضا
     bg_style = f'''
     <style>
     .stApp {{
-        background-image: linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.95)), url("data:image/jpg;base64,{bin_str}");
+        background-image: linear-gradient(rgba(253, 251, 247, 0.7), rgba(253, 251, 247, 0.9)), url("data:image/jpg;base64,{bin_str}");
         background-size: cover;
         background-attachment: fixed;
         background-position: center;
@@ -29,9 +29,9 @@ try:
     </style>
     '''
 except:
-    bg_style = '<style>.stApp { background-color: #0a0a0f; }</style>'
+    bg_style = '<style>.stApp { background-color: #FDFBF7; }</style>'
 
-# ۲. تزریق CSS پیشرفته (High-Tech Design)
+# ۲. تزریق CSS برای ظاهر روشن و High-Tech
 st.markdown(bg_style, unsafe_allow_html=True)
 st.markdown("""
     <style>
@@ -39,46 +39,44 @@ st.markdown("""
     [data-testid="stSidebar"], [data-testid="stHeader"], footer, #MainMenu {display: none;}
     .block-container {padding-top: 2rem;}
 
-    /* استایل باکس‌های متریک (Glassmorphism) */
+    /* استایل باکس‌های متریک (Bright Glassmorphism) */
     [data-testid="stMetricValue"] { 
         font-size: clamp(1.6rem, 5vw, 2.8rem) !important; 
-        color: #FFFFFF !important; 
+        color: #2D2D2D !important; /* متن تیره برای خوانایی در محیط روشن */
         font-weight: 900 !important;
-        text-shadow: 0px 0px 15px rgba(212, 175, 55, 0.4);
     }
     [data-testid="stMetricLabel"] { 
         font-size: clamp(0.9rem, 2vw, 1.1rem) !important; 
-        color: #D4AF37 !important; 
+        color: #B8860B !important; /* طلایی تیره‌تر برای کنتراست */
         font-weight: 700 !important;
         text-transform: uppercase;
-        letter-spacing: 1.5px;
+        letter-spacing: 1.2px;
     }
     .stMetric { 
-        background-color: rgba(255, 255, 255, 0.05) !important; 
-        border: 1px solid rgba(212, 175, 55, 0.3) !important; 
+        background-color: rgba(255, 255, 255, 0.6) !important; /* شیشه روشن */
+        border: 1px solid rgba(212, 175, 55, 0.5) !important; 
         padding: 25px 10px !important; 
         border-radius: 20px;
         text-align: center;
         backdrop-filter: blur(15px);
-        box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     }
     
-    /* استایل باکس‌های منطق و مقایسه (Tech Box) */
+    /* استایل باکس‌های منطق و مقایسه */
     .logic-box {
-        background-color: rgba(26, 30, 39, 0.7);
+        background-color: rgba(255, 255, 255, 0.8);
         padding: 20px;
         border-left: 5px solid #D4AF37;
         border-radius: 12px;
         margin-bottom: 20px;
         backdrop-filter: blur(10px);
-        border-right: 1px solid rgba(255,255,255,0.05);
-        border-top: 1px solid rgba(255,255,255,0.05);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     }
 
-    /* بهینه‌سازی متون */
-    h1, h3, h4, p { color: #ffffff !important; font-family: 'Inter', sans-serif; }
+    /* تنظیم رنگ متون اصلی */
+    h1, h3, h4, p, label { color: #2D2D2D !important; font-family: 'Inter', sans-serif; }
     
-    /* استایل اسلایدر و اینپوت‌ها */
+    /* استایل اسلایدر */
     .stSlider [data-baseweb="slider"] { padding-bottom: 2rem; }
     
     @media (max-width: 768px) {
@@ -89,23 +87,23 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # --- Header Section ---
-st.markdown("<h1 style='text-align: center; color: #D4AF37; margin-bottom:0; font-weight:800; letter-spacing: -1px;'>ASSET ACQUISITION STRATEGY</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #aaa !important; font-size: 1.1rem;'>Binghatti Skyrise Tower C | Strategic High-Tech Dashboard</p>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: #D4AF37 !important; margin-bottom:0; font-weight:800;'>ASSET ACQUISITION STRATEGY</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #666 !important; font-size: 1.1rem;'>Binghatti Skyrise Tower C | Strategic High-Tech Dashboard</p>", unsafe_allow_html=True)
 
 # --- Investment Logic Section ---
 with st.container():
     st.markdown("""
     <div class='logic-box'>
-        <h3 style='color: #D4AF37; margin-top:0;'>The Strategy: "Liability Assumption"</h3>
-        <p style='color: #ccc !important; font-size: 1.1rem;'>
-        This model allows an investor to secure full ownership by assuming the remaining liabilities of the units. 
+        <h3 style='color: #D4AF37 !important; margin-top:0;'>The Strategy: "Liability Assumption"</h3>
+        <p style='color: #444 !important; font-size: 1.1rem;'>
+        This model allows an investor to secure full ownership by assuming the remaining liabilities. 
         Instead of paying full equity upfront, you enter with <b>minimal liquidity</b> while benefiting from a 
         <b>0% interest-free private installment plan</b> until December 2026.
         </p>
     </div>
     """, unsafe_allow_html=True)
 
-# --- Dynamic Inputs (Top Row) ---
+# --- Dynamic Inputs ---
 st.write("### 🕹️ Adjust Your Entry Parameters")
 input_col1, input_col2 = st.columns([1, 2])
 
@@ -120,7 +118,7 @@ with input_col1:
     closing_date = st.date_input("📅 Target Signature Date", date.today())
     is_after_may = closing_date >= date(2026, 5, 5)
     scenario_label = "Scenario B (Post-May 5th)" if is_after_may else "Scenario A (Pre-May 5th Advantage)"
-    st.markdown(f"**Current Path:** <span style='color:#D4AF37;'>{scenario_label}</span>", unsafe_allow_html=True)
+    st.markdown(f"**Current Path:** <span style='color:#B8860B;'>{scenario_label}</span>", unsafe_allow_html=True)
 
 overdue_count = len([d for d in installment_dates if closing_date >= d])
 future_dates = [d for d in installment_dates if closing_date < d]
@@ -140,7 +138,7 @@ current_total = STRATEGIC_PRICE - (progress * (STRATEGIC_PRICE - BREAK_EVEN_PRIC
 current_monthly = 64800 - (progress * (64800 - 32400))
 current_handover = 648000 - (progress * (648000 - 324000))
 
-# --- High Visibility Metric Boxes ---
+# --- Metrics Row ---
 st.write("")
 m1, m2, m3, m4 = st.columns(4)
 m1.metric("ENTRY LIQUIDITY", f"{upfront_cash:,.0f} AED")
@@ -154,31 +152,31 @@ st.write("### ⚖️ Market Comparison: Why this deal?")
 c1, c2 = st.columns(2)
 with c1:
     st.markdown(f"""
-    <div class='logic-box' style='background-color: rgba(20, 20, 25, 0.8); border-left-color: #444;'>
-    <h4 style='color: #888; margin-top:0;'>Standard Resale</h4>
-    <p style='color: #FFFFFF;'>❌ Upfront Cash: <b>~670,000 AED</b></p>
-    <p style='color: #FFFFFF;'>❌ Full Equity Payment Required</p>
-    <p style='color: #FFFFFF;'>❌ High Entry Barrier</p>
+    <div class='logic-box' style='background-color: rgba(240, 240, 240, 0.8); border-left-color: #888;'>
+    <h4 style='color: #666 !important; margin-top:0;'>Standard Resale</h4>
+    <p style='color: #444 !important;'>❌ Upfront Cash: <b>~670,000 AED</b></p>
+    <p style='color: #444 !important;'>❌ Full Equity Payment Required</p>
+    <p style='color: #444 !important;'>❌ High Entry Barrier</p>
     </div>
     """, unsafe_allow_html=True)
 with c2:
     st.markdown(f"""
     <div class='logic-box'>
-    <h4 style='color: #D4AF37; margin-top:0;'>Creative Strategy</h4>
-    <p style='color: #FFFFFF;'>✅ Upfront Cash: <b>{upfront_cash:,.0f} AED</b></p>
-    <p style='color: #FFFFFF;'>✅ Liability Assumption Model</p>
-    <p style='color: #FFFFFF;'>✅ 0% Private Installment Plan</p>
+    <h4 style='color: #D4AF37 !important; margin-top:0;'>Creative Strategy</h4>
+    <p style='color: #2D2D2D !important;'>✅ Upfront Cash: <b>{upfront_cash:,.0f} AED</b></p>
+    <p style='color: #2D2D2D !important;'>✅ Liability Assumption Model</p>
+    <p style='color: #2D2D2D !important;'>✅ 0% Private Installment Plan</p>
     </div>
     """, unsafe_allow_html=True)
 
-# --- Multi-Color Timeline Chart ---
+# --- Timeline Chart ---
 st.divider()
 st.write("### 📅 Personalized Payment Timeline")
 
 labels = ["Entry Signature"] + [d.strftime("%b %y") for d in future_dates] + ["Handover"]
 values = [upfront_cash] + [current_monthly] * len(future_dates) + [current_handover]
-
-bar_colors = ['#D4AF37'] + ['#A49B93'] * len(future_dates) + ['#5D4E49']
+# پالت رنگی: طلایی به خاکستری تیره
+bar_colors = ['#D4AF37'] + ['#888888'] * len(future_dates) + ['#2D2D2D']
 
 fig = go.Figure(data=[
     go.Bar(x=labels, y=values, 
@@ -189,24 +187,23 @@ fig = go.Figure(data=[
 ])
 
 fig.update_layout(
-    template="plotly_dark", 
     height=450, 
     margin=dict(l=0, r=0, t=30, b=0), 
     paper_bgcolor='rgba(0,0,0,0)', 
     plot_bgcolor='rgba(0,0,0,0)',
-    xaxis=dict(showgrid=False),
-    yaxis=dict(showgrid=True, gridcolor="rgba(255,255,255,0.05)")
+    xaxis=dict(showgrid=False, tickfont=dict(color="#2D2D2D")),
+    yaxis=dict(showgrid=True, gridcolor="rgba(0,0,0,0.05)", tickfont=dict(color="#2D2D2D"))
 )
 st.plotly_chart(fig, use_container_width=True)
 
-# --- Property Highlights & Image ---
+# --- Highlights & Layout ---
 st.divider()
 col_l, col_r = st.columns([1, 1])
 with col_l:
     st.markdown(f"""
     <div class='logic-box'>
-    <h3 style='color: #D4AF37; margin-top:0;'>🏗️ Property Highlights</h3>
-    <ul style='color: #ccc; font-size: 1.1rem; padding-left: 20px;'>
+    <h3 style='color: #D4AF37 !important; margin-top:0;'>🏗️ Property Highlights</h3>
+    <ul style='color: #444; font-size: 1.1rem; padding-left: 20px;'>
         <li><b>Tower C:</b> Prime location, high floor units.</li>
         <li><b>Leverage:</b> Control 1.2M AED asset with only {(upfront_cash/current_total)*100:.1f}% down.</li>
         <li><b>Efficiency:</b> Acquisition at {(1 - current_total/1243000)*100:.1f}% below market avg.</li>
@@ -214,9 +211,9 @@ with col_l:
     </div>
     """, unsafe_allow_html=True)
 with col_r:
-    try: st.image("plan_2506.png.jpg", caption="Unit Layout Layout", use_container_width=True)
-    except: st.caption("Plan image loading from GitHub...")
+    try: st.image("plan_2506.png.jpg", caption="Unit Layout Plan", use_container_width=True)
+    except: st.caption("Plan image loading...")
 
-# --- Footer & Warning ---
-st.error("⚠️ PERFORMANCE-BASED MOU: FAILURE TO SETTLE ANY MONTHLY INSTALLMENTS LEADS TO IMMEDIATE FORFEITURE OF ALL PREVIOUSLY PAID FUNDS AS PER THE MOU TERMS.")
-st.markdown("<p style='text-align: center; opacity: 0.6; font-weight: 800; color: #FFF !important;'>DR. AMIR YASREBI | CEO ALMOHALENIN</p>", unsafe_allow_html=True)
+# --- Footer ---
+st.error("⚠️ PERFORMANCE-BASED MOU: FAILURE TO SETTLE ANY MONTHLY INSTALLMENTS LEADS TO IMMEDIATE FORFEITURE OF ALL PREVIOUSLY PAID FUNDS.")
+st.markdown("<p style='text-align: center; opacity: 0.8; font-weight: 800; color: #2D2D2D !important;'>DR. AMIR YASREBI | CEO ALMOHALENIN</p>", unsafe_allow_html=True)
