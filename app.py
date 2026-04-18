@@ -154,7 +154,7 @@ with c1:
     st.markdown(f"""
     <div class='logic-box' style='background-color: rgba(240, 240, 240, 0.8); border-left-color: #888;'>
     <h4 style='color: #666 !important; margin-top:0;'>Standard Resale</h4>
-    <p style='color: #444 !important;'>❌ Upfront Cash: <b>~670,000 AED</b></p>
+    <p style='color: #444 !important;'>❌ Upfront Cash: <b>~{max(upfront_cash,670000):,.0f} AED</b></p>
     <p style='color: #444 !important;'>❌ Full Equity Payment Required</p>
     <p style='color: #444 !important;'>❌ High Entry Barrier</p>
     </div>
