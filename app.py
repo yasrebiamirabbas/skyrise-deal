@@ -11,6 +11,42 @@ hide_st_style = """
             </style>
             """
 st.markdown(hide_st_style, unsafe_allow_html=True)
+
+import os
+
+# ۱. تنظیمات صفحه: سایدبار را در حالت باز (expanded) قفل می‌کنیم
+st.set_page_config(
+    page_title="ALMOHALENIN | Executive Dashboard",
+    layout="wide",
+    initial_sidebar_state="expanded" 
+)
+
+# ۲. تزریق CSS برای مخفی کردن دکمه‌های باز و بسته کردن و منوهای اضافه
+hide_style = """
+    <style>
+    /* مخفی کردن دکمه بستن سایدبار */
+    [data-testid="stSidebarCollapseButton"] {
+        display: none;
+    }
+    /* مخفی کردن دکمه باز کردن سایدبار (اگر بسته بود) */
+    button[kind="header"] {
+        display: none;
+    }
+    /* مخفی کردن منوی اصلی و فوتر استریم‌لیت */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    
+    /* فیکس کردن سایدبار برای عدم حرکت */
+    section[data-testid="stSidebar"] {
+        min-width: 300px !important;
+        max-width: 300px !important;
+    }
+    </style>
+    """
+st.markdown(hide_style, unsafe_allow_html=True)
+
+
 # تنظیمات لوکس برای CEO
 st.set_page_config(page_title="Dr.Amir  | Advanced Deal Architect", layout="wide")
 
