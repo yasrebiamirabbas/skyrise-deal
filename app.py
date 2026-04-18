@@ -4,7 +4,7 @@ from datetime import date
 import pandas as pd
 
 # تنظیمات لوکس برای CEO
-st.set_page_config(page_title="ALMOHALENIN | Advanced Deal Architect", layout="wide")
+st.set_page_config(page_title="Dr.Amir  | Advanced Deal Architect", layout="wide")
 
 st.markdown("""
     <style>
@@ -14,7 +14,7 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-st.title("🏆 ALMOHALENIN | Strategic Acquisition Logic")
+st.title("🏆 Dr.Amir | Strategic Acquisition Logic")
 st.subheader("Dynamic Calculator: Binghatti Skyrise Tower C")
 
 # --- ۱. تعریف ساختار زمانی اقساط ---
@@ -105,7 +105,7 @@ with col_a:
     """)
 with col_b:
     try:
-        st.image("plan_2505.png.jpg", caption="Studio Layout C2505", use_container_width=True)
+        st.image("plan_2506.png.jpg", caption="Studio Layout C2506", use_container_width=True)
     except:
         st.info("Layout images will appear here once uploaded to GitHub.")
 
