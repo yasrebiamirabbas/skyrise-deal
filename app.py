@@ -2,7 +2,15 @@ import streamlit as st
 import plotly.graph_objects as go
 from datetime import date
 import pandas as pd
-
+# کد برای مخفی کردن منوی استریم‌لیت و فوتر
+hide_st_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_st_style, unsafe_allow_html=True)
 # تنظیمات لوکس برای CEO
 st.set_page_config(page_title="Dr.Amir  | Advanced Deal Architect", layout="wide")
 
