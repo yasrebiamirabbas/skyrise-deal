@@ -2,130 +2,110 @@ import streamlit as st
 import plotly.graph_objects as go
 from datetime import date
 import pandas as pd
-# کد برای مخفی کردن منوی استریم‌لیت و فوتر
-hide_st_style = """
-            <style>
-            #MainMenu {visibility: hidden;}
-            footer {visibility: hidden;}
-            header {visibility: hidden;}
-            </style>
-            """
-st.markdown(hide_st_style, unsafe_allow_html=True)
-
 import os
 
-# ۱. تنظیمات صفحه: سایدبار را در حالت باز (expanded) قفل می‌کنیم
+# ۱. تنظیمات صفحه (فقط یک‌بار و در شروع کد)
 st.set_page_config(
-    page_title="ALMOHALENIN | Executive Dashboard",
+    page_title="Dr.Amir | Investment Dashboard",
     layout="wide",
-    initial_sidebar_state="expanded" 
+    initial_sidebar_state="expanded"
 )
 
-# ۲. تزریق CSS برای مخفی کردن دکمه‌های باز و بسته کردن و منوهای اضافه
-hide_style = """
+# ۲. تزریق CSS برای موبایل و شخصی‌سازی (White Labeling)
+# تنظیم کردیم که در موبایل فونت‌ها کمی کوچک‌تر شوند تا باکس‌ها به‌هم نریزند
+st.markdown("""
     <style>
-    /* مخفی کردن دکمه بستن سایدبار */
-    [data-testid="stSidebarCollapseButton"] {
-        display: none;
-    }
-    /* مخفی کردن دکمه باز کردن سایدبار (اگر بسته بود) */
-    button[kind="header"] {
-        display: none;
-    }
-    /* مخفی کردن منوی اصلی و فوتر استریم‌لیت */
+    /* مخفی کردن منوهای استریم‌لیت */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
-    
-    /* فیکس کردن سایدبار برای عدم حرکت */
-    section[data-testid="stSidebar"] {
-        min-width: 300px !important;
-        max-width: 300px !important;
+    [data-testid="stSidebarCollapseButton"] {display: none;} /* قفل کردن سایدبار */
+
+    /* استایل باکس‌های متریک */
+    [data-testid="stMetricValue"] { 
+        font-size: clamp(1.5rem, 5vw, 2rem) !important; 
+        color: #FFFFFF !important; 
+        font-weight: bold !important; 
     }
-    </style>
-    """
-st.markdown(hide_style, unsafe_allow_html=True)
+    [data-testid="stMetricLabel"] { 
+        font-size: 0.9rem !important; 
+        color: #D4AF37 !important; 
+    }
+    .stMetric { 
+        background-color: #11141d; 
+        border: 2px solid #D4AF37; 
+        padding: 15px; 
+        border-radius: 12px; 
+    }
 
-
-# تنظیمات لوکس برای CEO
-st.set_page_config(page_title="Dr.Amir  | Advanced Deal Architect", layout="wide")
-
-st.markdown("""
-    <style>
-    [data-testid="stMetricValue"] { font-size: 30px !important; color: #FFFFFF !important; font-weight: bold !important; }
-    [data-testid="stMetricLabel"] { font-size: 16px !important; color: #D4AF37 !important; }
-    .stMetric { background-color: #11141d; border: 2px solid #D4AF37; padding: 20px; border-radius: 15px; }
+    /* بهینه‌سازی برای نمایش موبایل */
+    @media (max-width: 640px) {
+        [data-testid="stMetricValue"] { font-size: 1.2rem !important; }
+        .stMetric { padding: 10px; }
+    }
     </style>
     """, unsafe_allow_html=True)
 
-st.title("🏆 Dr.Amir | Strategic Acquisition Logic")
-st.subheader("Dynamic Calculator: Binghatti Skyrise Tower C")
+# --- بدنه اصلی برنامه ---
+st.title("🏆 Dr.Amir | Strategic Acquisition")
+st.subheader("Binghatti Skyrise Tower C - Deal Architect")
 
-# --- ۱. تعریف ساختار زمانی اقساط ---
+# --- پارامترهای ثابت مالی ---
 installment_dates = [
     date(2026, 5, 5), date(2026, 6, 5), date(2026, 7, 5), 
     date(2026, 8, 5), date(2026, 9, 5)
 ]
-
-# پارامترهای ثابت
-BASE_OVERDUE = 216000 # مجموع بدهی تا قبل از می
-FEES = 28760          # NOC + 2% Commission
+BASE_OVERDUE = 216000 
+FEES = 28760          
 BREAK_EVEN_PRICE = 1156500
 STRATEGIC_PRICE = 1216760
 
-# --- ۲. سایدبار و کنترل‌های داینامیک ---
-st.sidebar.header("🕹️ Transaction Variables")
+# --- سایدبار کنترلی (🕹️ بخش ورودی‌ها) ---
+st.sidebar.header("🕹️ Transaction Settings")
+
 closing_date = st.sidebar.date_input("Contract Signature Date", date.today())
 
-# تشخیص اقساط معوقه بر اساس تاریخ انتخابی
+# منطق محاسباتی اقساط
 overdue_installments = [d for d in installment_dates if closing_date >= d]
 future_installments = [d for d in installment_dates if closing_date < d]
 
-# محاسبه کف نقدینگی (بدهی فعلی + جریمه‌ها + اقساطی که تاریخشان گذشته)
 min_upfront = BASE_OVERDUE + FEES + (len(overdue_installments) * 64800)
-
-# محاسبه سقف نقدینگی برای رسیدن به نقطه سربه سر (Max Upfront)
-# فرمول: قیمت سر‌به‌سر منهای (نیمی از اقساط باقی‌مانده + نیمی از مبلغ تحویل)
+# فرمول محاسبه سقف نقدینگی بر اساس منطق سربه سر
 max_upfront = BREAK_EVEN_PRICE - (len(future_installments) * 32400) - 324000
 
-# اسلایدر داینامیک (کف و سقف بر اساس تاریخ تغییر می‌کنند)
-upfront_cash = st.sidebar.slider("Initial Cash Commitment (AED)", 
-                                 float(min_entry := min_upfront), 
-                                 float(max_entry := max(max_upfront, min_upfront + 10000)), 
-                                 float(min_entry), 5000.0)
+upfront_cash = st.sidebar.slider(
+    "Initial Cash Commitment (AED)", 
+    float(min_upfront), 
+    float(max(max_upfront, min_upfront + 10000)), 
+    float(min_upfront), 
+    5000.0
+)
 
-# --- ۳. منطق درونیابی خطی (Linear Scaling) ---
-# محاسبه نسبت نقدینگی پرداختی بین کف و سقف
-range_val = max_entry - min_entry
-progress = (upfront_cash - min_entry) / range_val if range_val > 0 else 0
+# --- منطق محاسبات خطی ---
+range_val = max_upfront - min_upfront
+progress = (upfront_cash - min_upfront) / range_val if range_val > 0 else 0
 
-# محاسبه مقادیر خروجی بر اساس پیشرفت اسلایدر
 current_total_price = STRATEGIC_PRICE - (progress * (STRATEGIC_PRICE - BREAK_EVEN_PRICE))
 current_monthly_inst = 64800 - (progress * (64800 - 32400))
 current_handover = 648000 - (progress * (648000 - 324000))
 
-# --- ۴. نمایش خروجی‌ها ---
+# --- نمایش خروجی‌ها (Responsive Columns) ---
 st.divider()
-k1, k2, k3, k4 = st.columns(4)
+k1, k2, k3, k4 = st.columns([1, 1, 1, 1])
 with k1:
     st.metric("UPFRONT CASH", f"{upfront_cash:,.0f} AED")
-    st.caption("Due at Signature")
 with k2:
     st.metric("MONTHLY INST.", f"{current_monthly_inst:,.0f} AED")
-    st.caption(f"{len(future_installments)} Months Remaining")
 with k3:
     st.metric("FINAL HANDOVER", f"{current_handover:,.0f} AED")
-    st.caption("December 2026")
 with k4:
-    st.metric("TOTAL ASSET VALUE", f"{current_total_price:,.0f} AED")
-    st.caption(f"{(1 - current_total_price/1243000)*100:.1f}% Below Market")
+    st.metric("TOTAL VALUE", f"{current_total_price:,.0f} AED")
 
-# --- ۵. نمودار زمانی داینامیک ---
+# --- نمودار زمانی داینامیک ---
 st.divider()
-st.write("### 📅 Payment Timeline Visualization")
+st.write("### 📅 Payment Schedule")
 
-# ایجاد لیست برای نمودار
-labels = ["Signature"] + [d.strftime("%b %y") for d in future_installments] + ["Handover (Dec)"]
+labels = ["Signature"] + [d.strftime("%b %y") for d in future_installments] + ["Handover"]
 values = [upfront_cash] + [current_monthly_inst] * len(future_installments) + [current_handover]
 
 fig = go.Figure(data=[
@@ -135,22 +115,26 @@ fig = go.Figure(data=[
            marker_color=['#D4AF37'] + ['#1f77b4'] * len(future_installments) + ['#E74C3C'])
 ])
 
-fig.update_layout(template="plotly_dark", height=500, xaxis_title="Timeline Stages", yaxis_title="Amount (AED)")
+fig.update_layout(
+    template="plotly_dark", 
+    height=400, 
+    margin=dict(l=10, r=10, t=30, b=10),
+    xaxis_tickangle=-45 # کج کردن متن‌ها برای موبایل
+)
 st.plotly_chart(fig, use_container_width=True)
 
-# --- ۶. تحلیل و تصاویر ---
-col_a, col_b = st.columns(2)
+# --- تحلیل و تصاویر ---
+st.divider()
+col_a, col_b = st.columns([1, 1])
 with col_a:
-    st.write("### 💡 Financial Analysis")
-    st.info(f"""
-    - Liquidity Entry: You are entering this asset with only {(upfront_cash/current_total_price)*100:.1f}% of the total value.
-    - Price Strategy: { "Minimum Entry mode selected." if progress < 0.1 else "Cash-Optimization (Discount) mode active." }
-    - Monthly Obligation: {current_monthly_inst:,.0f} AED combined for both units.
+    st.info(f"""- Liquidity Entry: Only {(upfront_cash/current_total_price)*100:.1f}% of total value.
+    - Discount Level: {progress*100:.1f}% towards Break-Even.
+    - Future Debt: { (current_monthly_inst * len(future_installments)) + current_handover :,.0f} AED.
     """)
 with col_b:
     try:
-        st.image("plan_2506.png.jpg", caption="Studio Layout C2506", use_container_width=True)
+        st.image("plan_2506.png.jpg", caption="Layout C2506", use_container_width=True)
     except:
-        st.info("Layout images will appear here once uploaded to GitHub.")
+        st.caption("Plan image loading...")
 
-st.warning("⚠️ Legal Notice: This is a performance-based contract. Default on any installment leads to immediate forfeiture of the total paid amount as per the MOU terms.")
+st.warning("⚠️ Legal Notice: Performance-based contract. Default leads to forfeiture as per MOU.")
