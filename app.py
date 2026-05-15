@@ -112,8 +112,8 @@ input_col1, input_col2 = st.columns([1, 2])
 installment_dates = [date(2026, 5, 5), date(2026, 6, 5), date(2026, 7, 5), date(2026, 8, 5), date(2026, 9, 5)]
 BASE_OVERDUE = 216000
 FEES = 28760
-BREAK_EVEN_PRICE = 1156500
-STRATEGIC_PRICE = 1216760
+BREAK_EVEN_PRICE = 1080000
+STRATEGIC_PRICE = 1150000
 
 with input_col1:
     closing_date = st.date_input("📅 Target Signature Date", date.today())
